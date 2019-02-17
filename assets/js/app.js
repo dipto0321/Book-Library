@@ -36,7 +36,8 @@ function addBook() {
 
 function deleteBook(id) {
   Library.splice(id, 1);
-  storeData();
+  storeData(Library);
+  render();
 }
 
 function render() {
@@ -61,14 +62,14 @@ function render() {
 
 function template(id, title, author, pages, readstatus) {
   return `<tr>
-              <th scope="row">${id}</th>
+              <th scope="row">${id.toUpperCase()}</th>
               <td>${title}</td>
               <td>${author}</td>
               <td>${pages}</td>
               <td id="readStatus-${id}">${readstatus}</td>
               <td>
                 <button id="status-${id}" type="button" class="btn btn-sm btn-warning statusBtn"><i class="fas fa-dice"></i> Change status</button>
-                <button id="delete-${id}" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                <button id="delete-${id}" type="button" class="btn btn-sm btn-danger delBtn"><i class="fas fa-trash-alt"></i></button>
               </td>
             </tr>`;
 }
@@ -104,9 +105,23 @@ function statusEventListner() {
   });
 }
 
+function deleteBtnEventListner() {
+  let allDeleteBtn = Array.from(document.querySelectorAll(".delBtn"));
+  allDeleteBtn.forEach(element => {
+    element.addEventListener("click", () =>
+      deleteBook(bookIndexOf(element.id.split("-")[1]))
+    );
+  });
+}
+// delBtn
+
 function bookInfoUpdate(id, value) {
   Library.find(x => x.bookId === id).readStatus = value;
   storeData(Library);
+}
+
+function bookIndexOf(id) {
+  return Library.findIndex(i => i.bookId === id);
 }
 
 {
@@ -114,4 +129,5 @@ function bookInfoUpdate(id, value) {
   document.querySelector("#add").addEventListener("click", addBook);
   render();
   statusEventListner();
+  deleteBtnEventListner();
 }
