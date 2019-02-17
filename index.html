@@ -64,7 +64,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" id="add" class="btn btn-primary">
                   Add Done
                 </button>
               </div>
@@ -81,20 +81,22 @@
               <th scope="col">Book ID</th>
               <th scope="col">Title</th>
               <th scope="col">Author</th>
+              <th scope="col">Pages</th>
               <th scope="col">Status</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+          <tbody id="bookData">
+            <!-- <tr>
               <th scope="row">1</th>
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
+              <td>@mdo</td>
               <td>
                 <button type="button" class="btn btn-sm btn-warning"><i class="fas fa-dice"></i> Change status</button>
                 <button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>
