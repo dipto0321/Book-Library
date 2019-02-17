@@ -12,6 +12,8 @@ class Book {
   }
 }
 
+// ************** All helpers Functions *****************************
+
 // Function for set data on localstorage
 
 function storeData(Library) {
@@ -23,13 +25,34 @@ function extractData() {
   let booksData = JSON.parse(localStorage.getItem("myLibrary"));
   return booksData ? booksData : [];
 }
+// Function for update local book storage data
+function bookInfoUpdate(id, value) {
+  Library.find(x => x.bookId === id).readStatus = value;
+  storeData(Library);
+}
+
+// Function for getting object id
+function bookIndexOf(id) {
+  return Library.findIndex(i => i.bookId === id);
+}
+// ************** End *****************************
 
 // Function for addBooks
 
-function addBook() {
-  let book = new Book(...bookInfoFromForm());
+function addBook(args) {
+  let book = new Book(...args);
   Library.push(book);
   storeData(Library);
+}
+
+// Collect all book data from form
+function bookInfoFromForm() {
+  let title = document.querySelector("#title").value;
+  let author = document.querySelector("#author").value;
+  let pages = document.querySelector("#pages").value;
+  let readStatus = document.querySelector("#bookReadStatus").value;
+  console.log(title, author, pages, readStatus);
+  return [title, author, pages, readStatus];
 }
 
 // Function for delete book
@@ -39,7 +62,7 @@ function deleteBook(id) {
   storeData(Library);
   render();
 }
-
+// UI render function. Basically generates cells with data
 function render() {
   let datas = extractData();
   let contentBody = document.querySelector("#bookData");
@@ -60,6 +83,7 @@ function render() {
   }
 }
 
+// template generator for render function
 function template(id, title, author, pages, readstatus) {
   return `<tr>
               <th scope="row">${id.toUpperCase()}</th>
@@ -74,14 +98,7 @@ function template(id, title, author, pages, readstatus) {
             </tr>`;
 }
 
-function bookInfoFromForm() {
-  let title = document.querySelector("#title").value;
-  let author = document.querySelector("#author").value;
-  let pages = document.querySelector("#pages").value;
-  let readStatus = document.querySelector("#bookReadStatus").value;
-  console.log(title, author, pages, readStatus);
-  return [title, author, pages, readStatus];
-}
+// Function for toogle status
 
 function statusChange(id) {
   let status = ["Not Started", "Finished", "Reading"];
@@ -98,6 +115,8 @@ function statusChange(id) {
     bookInfoUpdate(bookId, status[0]);
   }
 }
+
+// Add events for all new generates button status and delete
 function statusEventListner() {
   let allStatusBtn = Array.from(document.querySelectorAll(".statusBtn"));
   allStatusBtn.forEach(element => {
@@ -113,20 +132,13 @@ function deleteBtnEventListner() {
     );
   });
 }
-// delBtn
 
-function bookInfoUpdate(id, value) {
-  Library.find(x => x.bookId === id).readStatus = value;
-  storeData(Library);
-}
-
-function bookIndexOf(id) {
-  return Library.findIndex(i => i.bookId === id);
-}
-
+// IIFE
 {
   Library = extractData();
-  document.querySelector("#add").addEventListener("click", addBook);
+  document
+    .querySelector("#add")
+    .addEventListener("click", () => addBook(bookInfoFromForm()));
   render();
   statusEventListner();
   deleteBtnEventListner();
