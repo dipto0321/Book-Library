@@ -61,6 +61,7 @@ function deleteBook(id) {
   Library.splice(id, 1);
   storeData(Library);
   render();
+  deleteBtnEventListner();
 }
 // UI render function. Basically generates cells with data
 function render() {
