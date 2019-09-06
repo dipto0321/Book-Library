@@ -1,0 +1,19 @@
+{
+  "name": "book-library",
+  "version": "1.0.0",
+  "description": "Simple vanilla javaScript project",
+  "main": "assets\\js\\app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipto0321/Book-Library.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dipto0321/Book-Library/issues"
+  },
+  "homepage": "https://github.com/dipto0321/Book-Library#readme"
+}
