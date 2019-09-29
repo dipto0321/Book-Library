@@ -4,8 +4,7 @@
 	"description": "Simple vanilla javaScript project",
 	"main": "assets\\js\\app.js",
 	"scripts": {
-		"eslint": "eslint",
-		"eslint-fix": "eslint --fix",
+		"eslint-lcl": "eslint",
 		"eslint-chk": "eslint --fix assets/js/*"
 	},
 	"repository": {
