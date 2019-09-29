@@ -6,7 +6,7 @@
 	"scripts": {
 		"eslint": "eslint",
 		"eslint-fix": "eslint --fix",
-		"eslint-chk": "eslint --fix assets\\js\\*"
+		"eslint-chk": "eslint --fix assets/js/*"
 	},
 	"repository": {
 		"type": "git",
