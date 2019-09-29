@@ -1,7 +1,3 @@
 linters:
   eslint:
-    config: './.eslintrc.js'
-files:
-  ignore:
-    - 'bower_components/*'
-    - 'node_modules/*'
+    config: './eslint.config'
