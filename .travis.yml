@@ -3,4 +3,4 @@ node_js:
   - '12'
 
 script:
-  - npm run eslint assets\js\app.js
+  - npm run eslint-chk

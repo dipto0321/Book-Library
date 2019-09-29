@@ -5,7 +5,8 @@
 	"main": "assets\\js\\app.js",
 	"scripts": {
 		"eslint": "eslint",
-		"eslint-fix": "eslint --fix"
+		"eslint-fix": "eslint --fix",
+		"eslint-chk": "eslint --fix assets\\js\\*"
 	},
 	"repository": {
 		"type": "git",
